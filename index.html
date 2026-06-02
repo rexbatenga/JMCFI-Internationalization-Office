@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMCFI Internationalization Office</title>
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --primary-purple: #4a148c;
+            --medium-purple: #7b1fa2;
+            --light-purple: #f3e5f5;
+            --accent-purple: #9c27b0;
+            --text-dark: #2d3748;
+            --text-muted: #64748b;
+            --amber-plan: #d84315;
+            --amber-hover: #bf360c;
+            --teal-monitoring: #00796b;
+            --teal-hover: #004d40;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            min-height: 100vh;
+            line-height: 1.6;
+            background-color: #fbf9fc;
+            position: relative;
+        }
+
+        /* Header Layout */
+        header {
+            background: linear-gradient(135deg, var(--primary-purple), var(--medium-purple));
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(74, 20, 140, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* Cleaned Logo Class - Sitting directly on the background */
+        .school-logo {
+            width: 110px;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.15));
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Floating Side Buttons Container */
+        .side-buttons-container {
+            position: fixed;
+            right: 0;
+            top: 45%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        /* Base Floating Button Styling */
+        .btn-side-floating {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -3px 4px 15px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease-in-out;
+            width: 175px;
+            justify-content: flex-start;
+        }
+
+        /* Specific Colors for Programs Button */
+        .btn-programs {
+            background-color: var(--accent-purple);
+        }
+        .btn-programs:hover {
+            background-color: var(--primary-purple);
+            padding-left: 20px;
+        }
+
+        /* Specific Colors for Operational/Tactical Plan Button */
+        .btn-plan {
+            background-color: var(--amber-plan);
+        }
+        .btn-plan:hover {
+            background-color: var(--amber-hover);
+            padding-left: 20px;
+        }
+
+        /* Specific Colors for Monitoring Button */
+        .btn-monitoring {
+            background-color: var(--teal-monitoring);
+        }
+        .btn-monitoring:hover {
+            background-color: var(--teal-hover);
+            padding-left: 20px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Grid Dashboard Cards */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .dashboard-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid rgba(123, 31, 162, 0.15);
+            box-shadow: 0 10px 25px rgba(74, 20, 140, 0.03);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(74, 20, 140, 0.08);
+        }
+
+        .card-header {
+            background-color: var(--light-purple);
+            padding: 25px;
+            border-bottom: 1px solid rgba(123, 31, 162, 0.1);
+        }
+
+        .card-header h2 {
+            font-size: 1.4rem;
+            color: var(--primary-purple);
+            font-weight: 700;
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body p {
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* Purple Custom Buttons */
+        .btn-portal {
+            background-color: var(--primary-purple);
+            color: #ffffff;
+            text-align: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-block;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-portal:hover {
+            background-color: var(--medium-purple);
+            box-shadow: 0 4px 12px rgba(123, 31, 162, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Side Buttons Layout Group -->
+    <div class="side-buttons-container">
+        <!-- Button 1: JMCFI Programs Module -->
+        <a href="aun-jmcfi.html" class="btn-side-floating btn-programs">
+            <span>📋 JMCFI Programs</span>
+        </a>
+
+        <!-- Button 2: Operational/Tactical Plan Folder (Opens in a New Tab) -->
+        <a href="https://drive.google.com/drive/folders/1Yyoyi-_co7NGSArfAP3if82_sJ7X3SWK" target="_blank" rel="noopener noreferrer" class="btn-side-floating btn-plan">
+            <span>📂 Office Plan</span>
+        </a>
+        
+        <!-- Button 3: Office Monitoring Spreadsheet -->
+        <a href="https://docs.google.com/spreadsheets/d/1n2gk4WteDGtX2whgDvvEG-Hd2XB7BJkp/edit?gid=1746050909#gid=1746050909" target="_blank" rel="noopener noreferrer" class="btn-side-floating btn-monitoring">
+            <span>📊 Office Monitoring</span>
+        </a>
+    </div>
+
+    <!-- Main Header Area with clean standalone PNG logo -->
+    <header>
+        <img src="JMCFI LOGO.png" alt="JMCFI Logo" class="school-logo">
+        <h1>JMCFI Internationalization Office</h1>
+        <p>AUN-QA Certification Tracking & Quality Assurance Gateways</p>
+    </header>
+
+    <div class="container">
+        <!-- Portals Grid -->
+        <div class="grid-container">
+
+            <!-- Indonesia Card -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Indonesia Gateway</h2>
+                </div>
+                <div class="card-body">
+                    <p>Indonesia AUN-QA Member Universities and assessed program</p>
+                    <a href="aun-qa-indonesia.html" class="btn-portal">Launch Portal &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Malaysia Card -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Malaysia Gateway</h2>
+                </div>
+                <div class="card-body">
+                    <p>Malaysia AUN-QA Member Universities and assessed program</p>
+                    <a href="aun-qa-malaysia.html" class="btn-portal">Launch Portal &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Thailand Card -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h2>Thailand Gateway</h2>
+                </div>
+                <div class="card-body">
+                    <p>Thailand AUN-QA Member Universities and assessed program</p>
+                    <a href="aun-qa-thailand.html" class="btn-portal">Launch Portal &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Page Footer -->
+    <footer>
+        <p>&copy; 2026 JMCFI Internationalization Office. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
