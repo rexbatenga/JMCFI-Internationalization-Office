@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMCFI Assessed Programs - AUN-QA</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --primary-purple: #4a148c;
+            --medium-purple: #7b1fa2;
+            --light-purple: #f3e5f5;
+            --text-dark: #2d3748;
+            --card-border: rgba(123, 31, 162, 0.12);
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fbf9fc;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--medium-purple);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: var(--primary-purple);
+        }
+        header {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 4px 20px rgba(74, 20, 140, 0.02);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        header img {
+            width: 90px;
+            height: auto;
+            mix-blend-mode: multiply;
+        }
+        header h1 {
+            color: var(--primary-purple);
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+        header p {
+            color: #64748b;
+            font-weight: 500;
+        }
+        .program-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .program-card {
+            background: #ffffff;
+            border: 1px solid var(--card-border);
+            border-left: 5px solid var(--medium-purple);
+            padding: 20px 25px;
+            border-radius: 6px 16px 16px 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .program-number {
+            background-color: var(--light-purple);
+            color: var(--primary-purple);
+            font-weight: 700;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.95rem;
+        }
+        .program-details h2 {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .program-date {
+            display: inline-block;
+            background-color: #f1f5f9;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Back Navigation Link -->
+        <a href="index.html" class="back-link">&larr; Back to Portal Homepage</a>
+
+        <!-- Main Card Block Header -->
+        <header>
+            <div class="logo-container">
+                <img src="JMCFI LOGO.jpg" alt="JMCFI Logo">
+            </div>
+            <h1>Jose Maria College Foundation, Inc.</h1>
+            <p>AUN-QA Assessed Programs Portfolio</p>
+        </header>
+
+        <!-- Program Registration Listings -->
+        <div class="program-list">
+
+            <!-- Program 1 -->
+            <div class="program-card">
+                <div class="program-number">1</div>
+                <div class="program-details">
+                    <h2>Bachelor of Science in Business Administration (Major: Financial Management)</h2>
+                    <span class="program-date">April 2025 - April 2030</span>
+                </div>
+            </div>
+
+            <!-- Program 2 -->
+            <div class="program-card">
+                <div class="program-number">2</div>
+                <div class="program-details">
+                    <h2>Bachelor of Secondary Education (Major: English)</h2>
+                    <span class="program-date">April 2025 - April 2030</span>
+                </div>
+            </div>
+
+            <!-- Program 3 -->
+            <div class="program-card">
+                <div class="program-number">3</div>
+                <div class="program-details">
+                    <h2>Bachelor of Science in Psychology</h2>
+                    <span class="program-date">April 2025 - April 2030</span>
+                </div>
+            </div>
+
+            <!-- Program 4 -->
+            <div class="program-card">
+                <div class="program-number">4</div>
+                <div class="program-details">
+                    <h2>Bachelor of Science in Criminology</h2>
+                    <span class="program-date">April 2025 - April 2030</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
