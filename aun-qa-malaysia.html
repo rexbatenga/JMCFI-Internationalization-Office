@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AUN-QA Malaysia Certification Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7fafc; color: #2d3748; margin: 40px; }
+        h2 { color: #1a202c; text-align: center; margin-bottom: 30px; font-weight: 700; letter-spacing: -0.5px; }
+        .table-container { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; max-width:1150px; margin:0 auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background-color: #1a202c; color: #fff; padding: 16px; text-align: left; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        th:first-child { border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
+        th:last-child { border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
+        td { padding: 14px 16px; border-bottom: 1px solid #edf2f7; font-size: 14px; }
+        .univ-header-row { background-color: #f1f5f9; }
+        .univ-header-cell { padding: 14px 16px; border-bottom: 2px solid #cbd5e1; border-top: 25px solid #fff; }
+        .univ-title { font-size: 16px; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.3px; }
+        .maps-button { font-size: 12px; font-weight: 600; color: #2563eb; background: #eff6ff; padding: 6px 12px; border-radius: 8px; text-decoration: none; border: 1px solid #bfdbfe; transition: all 0.2s; }
+        .maps-button:hover { background: #dbeafe; color: #1d4ed8; }
+        .program-cell { padding-left: 25px !important; font-weight: 600; color: #1a202c; position: relative; }
+        .program-cell::before { content: "-"; position: absolute; left: 12px; color: #94a3b8; font-weight: bold; }
+        .date-cell { color: #4a5568; font-weight: 500; }
+        .badge { padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 11px; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-active { background-color: #def7ec; color: #03543f; }
+        .badge-expired { background-color: #fde8e8; color: #9b1c1c; }
+        .program-row:hover { background-color: #f8fafc; }
+    </style>
+</head>
+<body>
+
+    <h2>AUN-QA Malaysia Certification Dashboard</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 55%;">Program / Degree Name</th>
+                    <th style="width: 30%;">Accreditation Period</th>
+                    <th style="width: 15%; text-align:center;">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Universiti Malaya -->
+                <tr class="univ-header-row">
+                    <td colspan="3" class="univ-header-cell">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="univ-title">Universiti Malaya</span>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Universiti%20Malaya" target="_blank" class="maps-button">View on Map</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of Arts Anthropology and Sociology</td>
+                    <td class="date-cell">December 2021 - December 2026</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of Science in Physics</td>
+                    <td class="date-cell">December 2021 - December 2026</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Master of Art (Southeast Asian History)</td>
+                    <td class="date-cell">January 2023 - January 2028</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+
+                <!-- Universiti Malaysia Sarawak -->
+                <tr class="univ-header-row">
+                    <td colspan="3" class="univ-header-cell">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="univ-title">Universiti Malaysia Sarawak</span>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Universiti%20Malaysia%20Sarawak" target="_blank" class="maps-button">View on Map</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of Arts in Linguistics with Honours</td>
+                    <td class="date-cell">September 2022 - September 2027</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor in Finance with Honours</td>
+                    <td class="date-cell">September 2022 - September 2027</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor in Business Administration(Marketing) with Honours</td>
+                    <td class="date-cell">September 2022 - September 2027</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+
+                <!-- Universiti Teknologi Malaysia -->
+                <tr class="univ-header-row">
+                    <td colspan="3" class="univ-header-cell">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="univ-title">Universiti Teknologi Malaysia</span>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Universiti%20Teknologi%20Malaysia" target="_blank" class="maps-button">View on Map</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of Science (Industrial Chemistry) with Honours</td>
+                    <td class="date-cell">March 2023 - March 2028</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of Science (Human Resource Development) with Honours</td>
+                    <td class="date-cell">March 2023 - March 2028</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of Engineering (Electrical – Mechatronics) with Honours</td>
+                    <td class="date-cell">March 2023 - March 2028</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Master of Education (Educational Technology)</td>
+                    <td class="date-cell">May 2025 - May 2030</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Master of Science (Biotechnology)</td>
+                    <td class="date-cell">May 2025 - May 2030</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+
+                <!-- Universiti Utara Malaysia -->
+                <tr class="univ-header-row">
+                    <td colspan="3" class="univ-header-cell">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span class="univ-title">Universiti Utara Malaysia</span>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Universiti%20Utara%20Malaysia" target="_blank" class="maps-button">View on Map</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of International Affairs Management (Hons)</td>
+                    <td class="date-cell">April 2018 - April 2023</td>
+                    <td style="text-align:center;"><span class="badge badge-expired">Expired</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of Science in Economics with Honours</td>
+                    <td class="date-cell">January 2021 - January 2026</td>
+                    <td style="text-align:center;"><span class="badge badge-expired">Expired</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of Development Management with Honours</td>
+                    <td class="date-cell">January 2021 - January 2026</td>
+                    <td style="text-align:center;"><span class="badge badge-expired">Expired</span></td>
+                </tr>
+                <tr class="program-row">
+                    <td class="program-cell">Bachelor of International Affairs Management with Honours</td>
+                    <td class="date-cell">May 2025 - May 2030</td>
+                    <td style="text-align:center;"><span class="badge badge-active">Active</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

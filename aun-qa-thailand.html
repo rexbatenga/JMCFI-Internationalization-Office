@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AUN-QA Thailand Certification Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7fafc; color: #2d3748; margin: 40px; }
+        h2 { color: #1a202c; text-align: center; margin-bottom: 30px; font-weight: 700; letter-spacing: -0.5px; }
+        .dashboard-container { max-width: 1150px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+        
+        .university-card { background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #e2e8f0; overflow: hidden; transition: all 0.2s ease; }
+        
+        .university-header { background-color: #f1f5f9; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+        .university-header:hover { background-color: #e2e8f0; }
+        
+        .title-group { display: flex; align-items: center; gap: 12px; }
+        .toggle-icon { font-size: 12px; color: #64748b; font-weight: bold; transition: transform 0.2s ease; }
+        .univ-title { font-size: 16px; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.3px; }
+        
+        .actions-group { display: flex; align-items: center; gap: 16px; }
+        .program-count { font-size: 13px; color: #64748b; background: #cbd5e1; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+        .maps-button { font-size: 12px; font-weight: 600; color: #2563eb; background: #eff6ff; padding: 6px 12px; border-radius: 8px; text-decoration: none; border: 1px solid #bfdbfe; transition: all 0.2s; }
+        .maps-button:hover { background: #dbeafe; color: #1d4ed8; }
+        
+        .programs-content { display: none; padding: 0 20px; border-top: 1px solid #edf2f7; background-color: #ffffff; }
+        .university-card.active .programs-content { display: block; }
+        .university-card.active .toggle-icon { transform: rotate(90deg); }
+        
+        table { width: 100%; border-collapse: collapse; margin: 10px 0 20px 0; }
+        th { background-color: #1a202c; color: #fff; padding: 12px 16px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        th:first-child { border-top-left-radius: 6px; border-bottom-left-radius: 6px; }
+        th:last-child { border-top-right-radius: 6px; border-bottom-right-radius: 6px; }
+        td { padding: 12px 16px; border-bottom: 1px solid #edf2f7; font-size: 14px; }
+        
+        .program-cell { font-weight: 600; color: #1a202c; position: relative; padding-left: 15px; }
+        .program-cell::before { content: "-"; position: absolute; left: 0; color: #94a3b8; font-weight: bold; }
+        .date-cell { color: #4a5568; font-weight: 500; width: 30%; }
+        .status-cell { text-align: center; width: 15%; }
+        
+        .badge { padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 11px; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-active { background-color: #def7ec; color: #03543f; }
+        .badge-expired { background-color: #fde8e8; color: #9b1c1c; }
+        .program-row:hover { background-color: #f8fafc; }
+    </style>
+</head>
+<body>
+
+    <h2>AUN-QA Thailand Certification Dashboard</h2>
+
+    <div class="dashboard-container">
+
+        <!-- Burapha University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Burapha University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">11 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Burapha%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science in Medical Technology</td>
+                            <td class="date-cell">March 2023 - March 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Arts in English for Communication</td>
+                            <td class="date-cell">March 2023 - March 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Business Administration in Hospitality, Tourism and MICE Management (International Program)</td>
+                            <td class="date-cell">March 2023 - March 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Education in Teaching English as a Global Language (International Program)</td>
+                            <td class="date-cell">March 2023 - March 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Software Engineering</td>
+                            <td class="date-cell">April 2024 - April 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Nursing Science Program</td>
+                            <td class="date-cell">April 2024 - April 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Nursing Science Program in Community Nurse Practitioner</td>
+                            <td class="date-cell">April 2024 - April 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Nursing Science Program (International Program)</td>
+                            <td class="date-cell">June 2025 - June 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Nursing Science Program in Psychiatric and Mental Health Nursing</td>
+                            <td class="date-cell">June 2025 - June 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy in Nursing Science (International Program)</td>
+                            <td class="date-cell">June 2025 - June 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Teaching English as a Global Language</td>
+                            <td class="date-cell">June 2025 - June 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Chulalongkorn University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Chulalongkorn University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">21 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Chulalongkorn%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy in Petrochemical Technology (International Programme)</td>
+                            <td class="date-cell">August 2019 - August 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy in Polymer Science (International Programme)</td>
+                            <td class="date-cell">August 2019 - August 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science in Polymer Science (International Programme)</td>
+                            <td class="date-cell">August 2019 - August 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science in Petroleum and Energy Technology (International Programme)</td>
+                            <td class="date-cell">August 2019 - August 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Dental Surgery Program</td>
+                            <td class="date-cell">October 2020 - October 2025</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Periodontics</td>
+                            <td class="date-cell">October 2020 - October 2025</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Public Administration Program in Public Administration</td>
+                            <td class="date-cell">November 2021 - October 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Arts Program in Economics (International Program)</td>
+                            <td class="date-cell">November 2021 - October 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Clinical Sciences (International Program)</td>
+                            <td class="date-cell">November 2021 - October 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Clinical Sciences (International Program)</td>
+                            <td class="date-cell">November 2021 - October 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Public Health Program in Public Health (International Program)</td>
+                            <td class="date-cell">March 2022 - March 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Petrochemical Technology (International Program)</td>
+                            <td class="date-cell">March 2022 - March 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Medical Sciences</td>
+                            <td class="date-cell">March 2022 - March 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Medical Sciences</td>
+                            <td class="date-cell">March 2022 - March 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science in Oral Biology (International Program)</td>
+                            <td class="date-cell">June 2024 - June 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy in Oral Biology (International Program)</td>
+                            <td class="date-cell">June 2024 - June 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Public Health (International Program)</td>
+                            <td class="date-cell">June 2024 - June 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Endodontics</td>
+                            <td class="date-cell">July 2025 - July 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Oral and Maxillofacial Surgery</td>
+                            <td class="date-cell">July 2025 - July 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Geriatric Dentistry and Special Patients Care (International Program)</td>
+                            <td class="date-cell">July 2025 - July 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in International Development Studies (International Program)</td>
+                            <td class="date-cell">July 2025 - July 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Kasetsart University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Kasetsart University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">7 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Kasetsart%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Fishery Science and Technology (International Program)</td>
+                            <td class="date-cell">March 2025 - March 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Arts Program in Literature</td>
+                            <td class="date-cell">March 2025 - March 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Forest Biological Science</td>
+                            <td class="date-cell">March 2025 - March 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Bioscience and Technology (International Program)</td>
+                            <td class="date-cell">March 2025 - March 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Agricultural Machinery and Mechatronics</td>
+                            <td class="date-cell">July 2025 - June 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Sports and Exercise Science</td>
+                            <td class="date-cell">July 2025 - June 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Engineering Program in Agricultural Engineering</td>
+                            <td class="date-cell">July 2025 - June 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- King Mongkut's University of Technology North Bangkok -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">King Mongkut's University of Technology North Bangkok</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">2 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=King%20Mongkut's%20University%20of%20Technology%20North%20Bangkok" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Engineering in Electrical and Computer Engineering (International Program)</td>
+                            <td class="date-cell">April 2024 - April 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Engineering in Electrical and Computer Engineering (International Program)</td>
+                            <td class="date-cell">April 2024 - April 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Mae Fah Luang University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Mae Fah Luang University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">8 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Mae%20Fah%20Luang%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Cosmetic Science</td>
+                            <td class="date-cell">June 2023 - June 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Cosmetic Science</td>
+                            <td class="date-cell">June 2023 - June 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Public Health Program</td>
+                            <td class="date-cell">June 2023 - June 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Public Health Program in Border Health Management</td>
+                            <td class="date-cell">June 2023 - June 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Applied Chemistry</td>
+                            <td class="date-cell">October 2023 - October 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Environmental Health</td>
+                            <td class="date-cell">October 2023 - October 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Occupational Health and Safety</td>
+                            <td class="date-cell">28 October 2023 - October 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Applied Thai Traditional Health</td>
+                            <td class="date-cell">October 2023 - October 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Maejo University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Maejo University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">1 Program</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Maejo%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Economics (International Economics)</td>
+                            <td class="date-cell">April 2025 - April 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Mahidol University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Mahidol University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">51 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Mahidol%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">BACHELOR OF TECHNOLOGY PROGRAM IN MEDICAL EDUCATIONAL TECHNOLOGY</td>
+                            <td class="date-cell">September 2018 - September 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">BACHELOR OF NURSING SCIENCE PROGRAM (RAMATHIBODI SCHOOL OF NURSING)</td>
+                            <td class="date-cell">September 2018 - September 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science in Occupational Therapy Programme</td>
+                            <td class="date-cell">September 2018 - September 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Technology Programme in Medical Education Technology</td>
+                            <td class="date-cell">September 2018 - September 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Nursing Science Programme (Medicine Ramathibodi Hospital)</td>
+                            <td class="date-cell">September 2018 - September 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Programme in Clinical Epidemiology (International Programme)</td>
+                            <td class="date-cell">September 2018 - September 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">BACHELOR OF NURSING SCIENCE PROGRAM</td>
+                            <td class="date-cell">March 2019 - March 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">BACHELOR OF SCIENCE PROGRAM IN INFORMATION AND COMMUNICATION TECHNOLOGY (INTERNATIONAL PROGRAM)</td>
+                            <td class="date-cell">March 2019 - March 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">MASTER OF CLINICAL TROPICAL MEDICINE (INTERNATIONAL PROGRAM)</td>
+                            <td class="date-cell">March 2019 - March 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">MASTER OF ARTS PROGRAM IN REHABILITATION SCIENCE FOR PERSONS WITH DISABILITIES</td>
+                            <td class="date-cell">March 2019 - March 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Physical Therapy (International Program), Faculty of Physical Therapy</td>
+                            <td class="date-cell">November 2019 - November 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Immunology (International Program), Faculty of Medicine Siriraj Hospital</td>
+                            <td class="date-cell">November 2019 - November 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Anatomy, Faculty of Medicine Siriraj Hospital</td>
+                            <td class="date-cell">November 2019 - November 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Public Health Program (International Program), Faculty of Public Health</td>
+                            <td class="date-cell">November 2019 - November 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Dental Surgery Program</td>
+                            <td class="date-cell">March 2020 - March 2025</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Social, Economic and Administrative Pharmacy (International Program)</td>
+                            <td class="date-cell">March 2020 - March 2025</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science in Pharmacy Program in Clinical Pharmacy (International Program)</td>
+                            <td class="date-cell">March 2020 - March 2025</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Radiological Technology</td>
+                            <td class="date-cell">March 2020 - March 2025</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Programme in Computer Science (International Programme), Mahidol University International College</td>
+                            <td class="date-cell">August 2021 - August 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Fine Arts Programme in Communication Design (International Programme), Mahidol University International College</td>
+                            <td class="date-cell">August 2021 - August 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Programme in Food Science for Nutrition (International Programme), Institute of Nutrition</td>
+                            <td class="date-cell">August 2021 - August 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Nursing Science Programme in Community Nurse Practitioner, Faculty of Public Health</td>
+                            <td class="date-cell">August 2021 - August 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Programme in Medical Technology, Faculty of Medical Technology</td>
+                            <td class="date-cell">September 2021 - September 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Programme in Paramedicine, Faculty of Medicine Ramathibodi Hospital</td>
+                            <td class="date-cell">September 2021 - September 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Programme in Medical Physics, Faculty of Medicine Ramathibodi Hospital</td>
+                            <td class="date-cell">September 2021 - September 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Programme in Polymer Science and Technology (International Programme), Faculty of Science</td>
+                            <td class="date-cell">September 2021 - September 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Veterinary Medicine</td>
+                            <td class="date-cell">December 2022 - December 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Pharmacy</td>
+                            <td class="date-cell">December 2022 - December 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Engineering Program in Environmental Engineering and Disaster Management</td>
+                            <td class="date-cell">December 2022 - December 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Nursing Science Programme (International Programme)</td>
+                            <td class="date-cell">December 2022 - December 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Programme in Science and Technology Education (International Programme)</td>
+                            <td class="date-cell">July 2023 - July 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Programme in Medical Technology (International Programme)</td>
+                            <td class="date-cell">July 2023 - July 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Programme in Tropical Medicine (International Programme)</td>
+                            <td class="date-cell">July 2023 - July 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Programme in Molecular Genetics and Genetic Engineering (International Programme)</td>
+                            <td class="date-cell">July 2023 - July 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Programme in Physical Therapy (International Programme)</td>
+                            <td class="date-cell">November 2023 - November 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Nursing Science Programme in Adult and Gerontological Nursing</td>
+                            <td class="date-cell">November 2023 - November 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Applied Thai Traditional Medicine</td>
+                            <td class="date-cell">November 2023 - November 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Programme in Science and Technology Education (International Programme)</td>
+                            <td class="date-cell">November 2023 - November 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Programme in Information and Communication Technology (International Programme)</td>
+                            <td class="date-cell">February 2024 - February 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Communication Arts Programme in Media and Communication (International Programme)</td>
+                            <td class="date-cell">February 2024 - February 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Nursing Science Programme</td>
+                            <td class="date-cell">February 2024 - February 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Dental Surgery Programme (International Programme)</td>
+                            <td class="date-cell">February 2024 - February 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Programme in Occupational Health and Safety</td>
+                            <td class="date-cell">August 2024 - August 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Programme in Agricultural Science</td>
+                            <td class="date-cell">August 2024 - August 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Nursing Science Programme in Pediatric Nursing</td>
+                            <td class="date-cell">August 2024 - August 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science / Higher Graduate Diploma Concurrent Programme in Orthodontics (International Programme)</td>
+                            <td class="date-cell">August 2024 - August 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Programme in Food Technology</td>
+                            <td class="date-cell">February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Programme in Sports Science</td>
+                            <td class="date-cell">February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Primary Health Care Management Programme (International Programme)</td>
+                            <td class="date-cell">February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Programme in Tropical Medicine (International Programme)</td>
+                            <td class="date-cell">28 February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Naresuan University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Naresuan University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">10 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Naresuan%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Business Administration (in Business Administration Program)</td>
+                            <td class="date-cell">March 2020 - March 2025</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Economics</td>
+                            <td class="date-cell">March 2020 - March 2025</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Communication Arts</td>
+                            <td class="date-cell">September 2022 - September 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Arts (Tourism)</td>
+                            <td class="date-cell">September 2022 - September 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Communication Arts (Communications)</td>
+                            <td class="date-cell">September 2022 - September 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Arts (Tourism and Hospitality Management)</td>
+                            <td class="date-cell">September 2022 - September 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Communication</td>
+                            <td class="date-cell">June 2024 - June 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Tourism and Hospitality Management</td>
+                            <td class="date-cell">June 2024 - June 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Business Administration in Business Administration</td>
+                            <td class="date-cell">16 February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Economics</td>
+                            <td class="date-cell">16 February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- National Institute of Development Administration -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">National Institute of Development Administration</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">20 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=National%20Institute%20of%20Development%20Administration" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Human Resource and Organization Development (International Programme)</td>
+                            <td class="date-cell">May 2018 - May 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Economics Program in Economics and Management Programme</td>
+                            <td class="date-cell">May 2018 - May 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Logistics Management Programme</td>
+                            <td class="date-cell">May 2018 - May 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Information Technology Management Programme</td>
+                            <td class="date-cell">May 2018 - May 2023</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science (Environmental Management)</td>
+                            <td class="date-cell">April 2019 - April 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science (Human Resource and Organization Development)</td>
+                            <td class="date-cell">April 2019 - April 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Arts (Communication and Innovation)</td>
+                            <td class="date-cell">April 2019 - April 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Management (International Program)</td>
+                            <td class="date-cell">April 2019 - April 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Environmental Management</td>
+                            <td class="date-cell">October 2019 - October 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Laws Program</td>
+                            <td class="date-cell">October 2019 - October 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Public Administration</td>
+                            <td class="date-cell">October 2019 - October 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">The Master of Public and Private Management, Graduate School of Public Administration</td>
+                            <td class="date-cell">April 2021 - April 2026</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">The Master of Economics Program in Financial Economics, Graduate School of Development Economics</td>
+                            <td class="date-cell">April 2021 - April 2026</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Communication Arts and Innovation</td>
+                            <td class="date-cell">April 2022 - April 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Language and Communication (International Program)</td>
+                            <td class="date-cell">April 2022 - April 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Social Development Administration</td>
+                            <td class="date-cell">April 2022 - April 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Communication and Innovation</td>
+                            <td class="date-cell">April 2022 - April 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Human Resource and Organization Development (International Program)</td>
+                            <td class="date-cell">April 2023 - April 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Human Resource and Organization Development</td>
+                            <td class="date-cell">June 2024 - June 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Management (International Program-English Track)</td>
+                            <td class="date-cell">June 2024 - June 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Prince of Songkla University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Prince of Songkla University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">27 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Prince%20of%20Songkla%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Nursing Program</td>
+                            <td class="date-cell">August 2022 - August 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Communication Arts Program</td>
+                            <td class="date-cell">August 2022 - August 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Political Science Program</td>
+                            <td class="date-cell">August 2022 - August 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Applied Chemistry</td>
+                            <td class="date-cell">August 2022 - August 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Nursing Science</td>
+                            <td class="date-cell">August 2022 - August 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Nursing Science Program</td>
+                            <td class="date-cell">January 2023 - January 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Epidemiology (International Program)</td>
+                            <td class="date-cell">January 2023 - January 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Biomedical Sciences</td>
+                            <td class="date-cell">July 2023 - July 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Oral Health Sciences</td>
+                            <td class="date-cell">July 2023 - July 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Arts Program in Applied English Language Studies</td>
+                            <td class="date-cell">July 2023 - July 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Functional Food and Nutrition</td>
+                            <td class="date-cell">July 2023 - July 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Business Administration Program in Tourism Management (International Program)</td>
+                            <td class="date-cell">November 2023 - October 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Business Administration in Hospitality Management (International Program)</td>
+                            <td class="date-cell">November 2023 - October 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science in Research Methodology and Data Analytics</td>
+                            <td class="date-cell">November 2023 - October 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Business Administration Program</td>
+                            <td class="date-cell">November 2023 - October 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Arts Program in Chinese</td>
+                            <td class="date-cell">November 2024 - November 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Biomedical Engineering</td>
+                            <td class="date-cell">November 2024 - November 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Applied Statistics</td>
+                            <td class="date-cell">November 2024 - November 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Nursing Science Program in Nursing Administration</td>
+                            <td class="date-cell">November 2024 - November 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Mathematics and Computer Science</td>
+                            <td class="date-cell">February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Education Program in Teaching Islamic Studies</td>
+                            <td class="date-cell">February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Nutrition and Dietetics</td>
+                            <td class="date-cell">February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Arts Program in Psychology</td>
+                            <td class="date-cell">February 2025 - February 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Oral and Maxillofacial Surgery</td>
+                            <td class="date-cell">December 2025 - December 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Engineering Program in Computer Engineering</td>
+                            <td class="date-cell">December 2025 - December 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Nursing Science (International Program)</td>
+                            <td class="date-cell">December 2025 - December 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Microbiology (International Program)</td>
+                            <td class="date-cell">December 2025 - December 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Silpakorn University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Silpakorn University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">3 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Silpakorn%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Arts Program in Archaeology</td>
+                            <td class="date-cell">August 2025 - August 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Doctor of Philosophy Program in Design Arts (International Program)</td>
+                            <td class="date-cell">August 2025 - August 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Fine Arts Programme in Digital Communication Design (International Programme)</td>
+                            <td class="date-cell">August 2025 - August 2030</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Srinakharinwirot University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Srinakharinwirot University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">17 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Srinakharinwirot%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Gems and Jewelry</td>
+                            <td class="date-cell">October 2019 - October 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Nursing Science Program</td>
+                            <td class="date-cell">October 2019 - October 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Applied Behavioral Science Research</td>
+                            <td class="date-cell">October 2019 - October 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Sports and Exercise Science</td>
+                            <td class="date-cell">October 2019 - October 2024</td>
+                            <td class="status-cell"><span class="badge badge-expired">Expired</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science in Physical Therapy</td>
+                            <td class="date-cell">December 2021 - December 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Oral and Maxillofacial Sciences</td>
+                            <td class="date-cell">December 2021 - December 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Physical Therapy</td>
+                            <td class="date-cell">December 2021 - December 2026</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Arts Program in Children’s Literature</td>
+                            <td class="date-cell">April 2022 - April 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Arts Program in Cinema and Digital Media</td>
+                            <td class="date-cell">April 2022 - April 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Public Health</td>
+                            <td class="date-cell">April 2022 - April 2027</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Engineering Program in Biomedical Engineering</td>
+                            <td class="date-cell">December 2023 - December 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Arts Program in Sociology for Development</td>
+                            <td class="date-cell">December 2023 - December 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Fine and Applied Arts Program in Performing Arts</td>
+                            <td class="date-cell">December 2023 - December 2028</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Nursing Science Program</td>
+                            <td class="date-cell">December 2024 - December 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Sports and Exercise Science</td>
+                            <td class="date-cell">December 2024 - December 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Bachelor of Science Program in Gems and Jewelry (Bilingual Program)</td>
+                            <td class="date-cell">December 2024 - December 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                        <tr class="program-row">
+                            <td class="program-cell">Master of Science Program in Applied Behavioral Science Research</td>
+                            <td class="date-cell">December 2024 - December 2029</td>
+                            <td class="status-cell"><span class="badge badge-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleDropdown(element) {
+            const card = element.parentElement;
+            card.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
