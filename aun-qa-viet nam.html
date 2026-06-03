@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AUN-QA Viet Nam Certification Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7fafc; color: #2d3748; margin: 40px; }
+        
+        /* Layout container for the header and back button alignment */
+        .header-container {
+            max-width: 1150px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        h2 { color: #1a202c; margin: 0; font-weight: 700; letter-spacing: -0.5px; flex-grow: 1; text-align: center; }
+        
+        /* Back to Portal Homepage Button Styling */
+        .home-button {
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #1a202c;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            position: absolute;
+            left: 0;
+        }
+        .home-button:hover { background: #4a5568; transform: translateY(-1px); }
+        .home-button:active { transform: translateY(0); }
+
+        .dashboard-container { max-width: 1150px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+        
+        .university-card { background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #e2e8f0; overflow: hidden; transition: all 0.2s ease; }
+        
+        .university-header { background-color: #f1f5f9; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+        .university-header:hover { background-color: #e2e8f0; }
+        
+        .title-group { display: flex; align-items: center; gap: 12px; }
+        .toggle-icon { font-size: 12px; color: #64748b; font-weight: bold; transition: transform 0.2s ease; }
+        .univ-title { font-size: 16px; font-weight: 700; color: #1e293b; text-transform: uppercase; letter-spacing: 0.3px; }
+        
+        .actions-group { display: flex; align-items: center; gap: 16px; }
+        .program-count { font-size: 13px; color: #64748b; background: #cbd5e1; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+        .maps-button { font-size: 12px; font-weight: 600; color: #2563eb; background: #eff6ff; padding: 6px 12px; border-radius: 8px; text-decoration: none; border: 1px solid #bfdbfe; transition: all 0.2s; }
+        .maps-button:hover { background: #dbeafe; color: #1d4ed8; }
+        
+        .programs-content { display: none; padding: 0 20px; border-top: 1px solid #edf2f7; background-color: #ffffff; }
+        .university-card.active .programs-content { display: block; }
+        .university-card.active .toggle-icon { transform: rotate(90deg); }
+        
+        table { width: 100%; border-collapse: collapse; margin: 10px 0 20px 0; }
+        th { background-color: #1a202c; color: #fff; padding: 12px 16px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        th:first-child { border-top-left-radius: 6px; border-bottom-left-radius: 6px; }
+        th:last-child { border-top-right-radius: 6px; border-bottom-right-radius: 6px; }
+        td { padding: 12px 16px; border-bottom: 1px solid #edf2f7; font-size: 14px; }
+        
+        .program-cell { font-weight: 600; color: #1a202c; position: relative; padding-left: 15px; }
+        .program-cell::before { content: "-"; position: absolute; left: 0; color: #94a3b8; font-weight: bold; }
+        .date-cell { color: #4a5568; font-weight: 500; width: 30%; }
+        .status-cell { text-align: center; width: 15%; }
+        
+        .badge { padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 11px; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-active { background-color: #def7ec; color: #03543f; }
+        .badge-expired { background-color: #fde8e8; color: #9b1c1c; }
+        .program-row:hover { background-color: #f8fafc; }
+
+        /* Responsive design for smaller viewports */
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 15px; align-items: flex-start; }
+            .home-button { position: relative; }
+        }
+    </style>
+    <script>
+        function toggleDropdown(headerElement) {
+            const card = headerElement.parentElement;
+            card.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+
+    <div class="header-container">
+        <a href="index.html" class="home-button">← Back to Portal Homepage</a>
+        <h2>AUN-QA Viet Nam Certification Dashboard</h2>
+    </div>
+
+    <div class="dashboard-container">
+
+        <!-- Can Tho University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Can Tho University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">36 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Can%20Tho%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Software Engineering</td><td class="date-cell">April 2021 - April 2026</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Computer Networks and Data Communication</td><td class="date-cell">April 2021 - April 2026</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Mechatronics Engineering</td><td class="date-cell">April 2021 - April 2026</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Mathematics Teacher Education</td><td class="date-cell">April 2021 - April 2026</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Land Management</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Chemistry</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Crop Science</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Food Technology</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Plant Protection</td><td class="date-cell">December 2022 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Applied Mathematics</td><td class="date-cell">December 2022 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master in Mathematical Analysis</td><td class="date-cell">December 2022 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Aquaculture (advanced programme)</td><td class="date-cell">December 2022 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in English Studies (Major: English Studies)</td><td class="date-cell">June 2023 - June 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master in Aquaculture (instructed in English Programme)</td><td class="date-cell">June 2023 - June 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Electronics and Telecommunication Engineering</td><td class="date-cell">June 2023 - June 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Computer Science</td><td class="date-cell">June 2023 - June 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Agricultural Economics</td><td class="date-cell">August 2023 - August 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Biotechnology (Advanced Programme)</td><td class="date-cell">August 2023 - August 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master in Principles and Methods in Mathematics Education</td><td class="date-cell">August 2023 - August 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master in Hydraulic Engineering</td><td class="date-cell">August 2023 - August 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Electrical Engineering</td><td class="date-cell">October 2023 - October 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Environment and Natural Resources Management</td><td class="date-cell">October 2023 - October 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Animal Science</td><td class="date-cell">October 2023 - October 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Veterinary Medicine (Doctor of Veterinary Medicine)</td><td class="date-cell">October 2023 - October 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Engineering Physics</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Biology</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Computer Engineering</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master in Electrical Engineering</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Tourism and Hospitality Management</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Aquatic Products Processing Technology</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Information Systems</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master in Computer Science</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in International Business</td><td class="date-cell">April 2025 - April 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master in Economic Management</td><td class="date-cell">April 2025 - April 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Industrial Management</td><td class="date-cell">April 2025 - April 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Applied Biological Sciences</td><td class="date-cell">April 2025 - April 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Dalat University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Dalat University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">9 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Dalat%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Business Administration</td><td class="date-cell">January 2023 - January 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Agronomy</td><td class="date-cell">January 2023 - January 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Biotechnology</td><td class="date-cell">January 2023 - January 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Accounting</td><td class="date-cell">September 2023 - September 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Information Technology</td><td class="date-cell">September 2023 - September 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of English Teacher Education</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Primary Education</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Telecommunications and Electronics Engineering Technology</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Analytical Chemistry</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Foreign Trade University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Foreign Trade University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">19 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Foreign%20Trade%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of International Business Economics</td><td class="date-cell">February 2019 - February 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of International Business Management</td><td class="date-cell">February 2019 - February 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of of Banking and International Finance</td><td class="date-cell">February 2019 - February 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of International Economics</td><td class="date-cell">February 2019 - February 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Advanced Programme in International Business Economics</td><td class="date-cell">August 2021 - August 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Advanced Programme in International Business Management</td><td class="date-cell">August 2021 - August 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Science in Banking and Finance</td><td class="date-cell">August 2021 - August 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Economic Law</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Accounting (Accounting - Auditing) ACCA-Oriented High Quality Program</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of International Economics (Taught in English)</td><td class="date-cell">December 2023 - December 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Business Administration</td><td class="date-cell">December 2023 - December 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Executive Master of Business Administration (EMBA)</td><td class="date-cell">December 2023 - December 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Business and Trade</td><td class="date-cell">April 2024 - April 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Economic Management</td><td class="date-cell">April 2024 - April 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of International Economics - International Trade Policy and Law program (Taught in English)</td><td class="date-cell">April 2024 - April 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in International Business (International Business - Japanese Advanced models) - High quality program taught in English</td><td class="date-cell">April 2024 - April 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in International Economics (International Economics) - High quality program taught in English</td><td class="date-cell">September 2024 - September 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Business Administration (International Business Management) - High quality program taught in English</td><td class="date-cell">September 2024 - September 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Banking and Finance (Banking and International Finance) - High quality program taught in English</td><td class="date-cell">September 2024 - September 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Hanoi University of Public Health -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Hanoi University of Public Health</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">3 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Hanoi%20University%20of%20Public%20Health" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Public Health programme</td><td class="date-cell">January 2018 - February 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master in Public Health Programme</td><td class="date-cell">April 2023 - April 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master in Hospital Management Programme</td><td class="date-cell">April 2023 - April 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Hanoi University of Science and Technology -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Hanoi University of Science and Technology</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">35 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Hanoi%20University%20of%20Science%20and%20Technology" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Advanced Program in Mechatronics Engineering</td><td class="date-cell">August 2017 - August 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Advanced Program in Biomedical Engineering</td><td class="date-cell">August 2017 - August 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Advanced Program in Materials Science and Engineering</td><td class="date-cell">August 2017 - August 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Program in Mechatronics Engineering</td><td class="date-cell">November 2017 - November 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Program in Electronics and Telecommunications Engineering</td><td class="date-cell">November 2017 - November 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Program in Materials Science and Engineering</td><td class="date-cell">November 2017 - November 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Program in Chemical Engineering</td><td class="date-cell">November 2017 - November 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Control Engineering and Automation</td><td class="date-cell">March 2020 - March 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Electrical Engineering</td><td class="date-cell">March 2020 - March 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Transport Mechanical Engineering</td><td class="date-cell">March 2020 - March 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Bioengineering</td><td class="date-cell">March 2020 - March 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Aviation Engineering</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Mechanical Engineering</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Food Engineering</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Chemistry</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Printing Engineering</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Environmental Engineering</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Engineering Physics</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Textile Engineering</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in International Professional English</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Vietnam-Japan Information Technology</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Mathematics and Informatics</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Thermal Engineering</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Electronics and Telecommunication Engineering</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Materials Engineering</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Mechatronics Engineering</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Chemical Engineering</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Advanced Programme in Biomedical Engineering</td><td class="date-cell">August 2023 - August 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Science Programme in Biotechnology</td><td class="date-cell">August 2023 - August 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Science Programme in Mechatronics Engineering</td><td class="date-cell">August 2023 - August 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in English for Science and Technology</td><td class="date-cell">August 2023 - August 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Electrical Engineering</td><td class="date-cell">May 2025 - May 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Control Engineering and Automation</td><td class="date-cell">May 2025 - May 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Transport Mechanical Engineering</td><td class="date-cell">May 2025 - May 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Advanced Programme in Automotive Engineering</td><td class="date-cell">May 2025 - May 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ho Chi Minh City Open University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Ho Chi Minh City Open University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">4 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ho%20Chi%20Minh%20City%20Open%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Accounting</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Banking and Finance</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in English</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Computer Science</td><td class="date-cell">January 2022 - January 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ho Chi Minh City University of Education -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Ho Chi Minh City University of Education</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">12 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ho%20Chi%20Minh%20City%20University%20of%20Education" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Primary Education, Department of Primary Education</td><td class="date-cell">June 2021 - June 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Physics Teacher Education, Department of Physics</td><td class="date-cell">June 2021 - June 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Chemistry Teacher Education, Department of Chemistry</td><td class="date-cell">June 2021 - June 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Psychology</td><td class="date-cell">June 2021 - June 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of French Language</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Chinese Language</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Information Technology</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in English Language</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Teaching Chinese as a Foreign Language</td><td class="date-cell">November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Teaching English as a Foreign Language</td><td class="date-cell">November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Mathematics Teacher Education</td><td class="date-cell">November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Educational Psychology</td><td class="date-cell">November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ho Chi Minh City University of Food Industry -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Ho Chi Minh City University of Food Industry</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">3 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ho%20Chi%20Minh%20City%20University%20of%20Food%20Industry" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Engineer of Food Technology</td><td class="date-cell">December 2019 - December 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Chemical Engineering Technology</td><td class="date-cell">December 2019 - December 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Chemical Engineering Technology</td><td class="date-cell">December 2019 - December 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ho Chi Minh City University of Technology -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Ho Chi Minh City University of Technology</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">10 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ho%20Chi%20Minh%20City%20University%20of%20Technology" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of English Language</td><td class="date-cell">November 2021 - November 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Environmental Engineering</td><td class="date-cell">November 2021 - November 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Food Technology</td><td class="date-cell">November 2021 - November 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Mechatronics Engineering</td><td class="date-cell">November 2021 - November 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Construction Management</td><td class="date-cell">October 2023 - October 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Pharmacy</td><td class="date-cell">October 2023 - October 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Management Information System</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Information Technology</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Electrical Engineering</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Multimedia</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ho Chi Minh City University of Technology and Education -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Ho Chi Minh City University of Technology and Education</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">11 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ho%20Chi%20Minh%20City%20University%20of%20Technology%20and%20Education" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">BACHELOR OF ENGINEERING IN MACHINE MANUFACTURING TECHNOLOGY</td><td class="date-cell">December 2017 - December 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">BACHELOR OF ENGINEERING IN ELECTRONICS COMMUNICATION ENGINEERING TECHNOLOGY</td><td class="date-cell">December 2017 - December 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">BACHELOR OF ENGINEERING IN THERMAL ENGINEERING TECHNOLOGY</td><td class="date-cell">December 2017 - December 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">BACHELOR OF ENGINEERING IN ENVIRONMENTAL ENGINEERING TECHNOLOGY</td><td class="date-cell">December 2017 - December 2022</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Garment Technology</td><td class="date-cell">December 2019 - December 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Information Technology</td><td class="date-cell">December 2019 - December 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Printing Engineering Technology</td><td class="date-cell">December 2019 - December 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Accounting</td><td class="date-cell">January 2023 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Chemical Engineering Technology</td><td class="date-cell">January 2023 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Teaching English to Speakers of Other Languages</td><td class="date-cell">January 2023 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Biomedical Engineering</td><td class="date-cell">January 2023 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ho Chi Minh City University of Transport -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Ho Chi Minh City University of Transport</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">3 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ho%20Chi%20Minh%20City%20University%20of%20Transport" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Civil Engineering</td><td class="date-cell">April 2022 - April 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Maritime Science (Regular Programme)</td><td class="date-cell">November 2023 - November 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Electronics and Telecommunication Engineering (Regular Programme)</td><td class="date-cell">November 2023 - November 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Ho Chi Minh University of Banking -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Ho Chi Minh University of Banking</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">8 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Ho%20Chi%20Minh%20University%20of%20Banking" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Banking Programme</td><td class="date-cell">May 2019 - May 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Finance programme</td><td class="date-cell">May 2019 - May 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Business Administration</td><td class="date-cell">April 2022 - April 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Accounting</td><td class="date-cell">April 2022 - April 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of International Economics</td><td class="date-cell">April 2022 - April 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Finance and Banking</td><td class="date-cell">April 2022 - April 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Banking and Finance with specialization in Banking</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Banking and Finance with specialization in Finance</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Hoa Sen University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Hoa Sen University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">12 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Hoa%20Sen%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Hotel Management</td><td class="date-cell">May 2019 - May 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in English Studies</td><td class="date-cell">May 2019 - May 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Interior Design</td><td class="date-cell">July 2021 - July 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Restaurant Management</td><td class="date-cell">July 2021 - July 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Science in Information Technology</td><td class="date-cell">July 2021 - July 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">The Bachelor of Arts in Travel & Tourism Management</td><td class="date-cell">September 2022 - September 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">The Bachelor of Science in Software Engineering</td><td class="date-cell">September 2022 - September 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">The Bachelor of Arts in Graphic Design</td><td class="date-cell">September 2022 - September 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Fashion Design</td><td class="date-cell">July 2024 - July 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Media Production and Management</td><td class="date-cell">July 2024 - July 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Business Administration</td><td class="date-cell">July 2024 - July 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Arts in English Language Studies</td><td class="date-cell">July 2024 - July 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Hue University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Hue University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">2 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Hue%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Medical Laboratory</td><td class="date-cell">August 2023 - August 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor’s Programme in Mathematics Teacher Education</td><td class="date-cell">April 2025 - April 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Industrial University of Ho Chi Minh City -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Industrial University of Ho Chi Minh City</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">31 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Industrial%20University%20of%20Ho%20Chi%20Minh%20City" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Electronics Electrical Engineering Technology Study Programme</td><td class="date-cell">July 2018 - July 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Electronic and Communication Engineering Technology Study Programme</td><td class="date-cell">July 2018 - July 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Chemical Engineering Study Programme</td><td class="date-cell">July 2018 - July 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Environmental Engineering Technology Study Programme</td><td class="date-cell">July 2018 - July 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Accounting</td><td class="date-cell">September 2019 - September 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Automotive Engineering Technology</td><td class="date-cell">September 2019 - September 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of English Language</td><td class="date-cell">September 2019 - September 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Business Administration</td><td class="date-cell">September 2019 - September 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Computer Engineering Technology</td><td class="date-cell">November 2021 - November 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Electronic Commerce</td><td class="date-cell">November 2021 - November 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Garment Technology</td><td class="date-cell">November 2021 - November 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Thermal Engineering Technology</td><td class="date-cell">November 2021 - November 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Computer Science</td><td class="date-cell">May 2023 - May 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Automation and Control Engineering Technology</td><td class="date-cell">May 2023 - May 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Mechatronics Engineering Technology</td><td class="date-cell">May 2023 - May 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Food Safety and Quality Assurance</td><td class="date-cell">May 2023 - May 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Mechanical Engineering</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Science in Computer Science</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Management of Natural Resources and Environment</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Engineering in Chemical Engineering</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Electrical Electronics Engineering Technology</td><td class="date-cell">December 2023 - November 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Electronics and Telecommunication Engineering Technology</td><td class="date-cell">December 2023 - November 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Chemical Engineering</td><td class="date-cell">December 2023 - November 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Environmental Engineering Technology</td><td class="date-cell">December 2023 - November 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in English Language</td><td class="date-cell">December 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Automotive Engineering Technology</td><td class="date-cell">December 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Software Engineering</td><td class="date-cell">December 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Science in Food Science and Nutrition</td><td class="date-cell">December 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Bridge and Highway Engineering</td><td class="date-cell">May 2025 - May 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Fashion Design</td><td class="date-cell">May 2025 - May 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Accounting</td><td class="date-cell">May 2025 - May 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Lac Hong University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Lac Hong University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">12 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Lac%20Hong%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Engineer of Information Technology</td><td class="date-cell">June 2019 - June 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Electrical and Electronics Engineering Technology</td><td class="date-cell">June 2019 - June 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Information Technology</td><td class="date-cell">June 2019 - May 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Electrical and Electronics Engineering Technology</td><td class="date-cell">June 2019 - May 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in English Language</td><td class="date-cell">July 2021 - July 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Pharmacist</td><td class="date-cell">July 2021 - July 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Business Administration</td><td class="date-cell">July 2021 - July 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Accounting</td><td class="date-cell">July 2021 - July 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Automotive Engineering Technology</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Chinese Language</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Tourism and Travel Management</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Food Technology</td><td class="date-cell">October 2024 - October 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Nguyen Tat Thanh University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Nguyen Tat Thanh University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">8 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Nguyen%20Tat%20Thanh%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Information Technology</td><td class="date-cell">October 2019 - October 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in English Studies</td><td class="date-cell">October 2019 - October 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Business Administration</td><td class="date-cell">October 2019 - October 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Finance and Banking</td><td class="date-cell">October 2019 - October 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Accounting</td><td class="date-cell">February 2022 - February 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Food Technology</td><td class="date-cell">February 2022 - February 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineering in Biotechnology</td><td class="date-cell">February 2022 - February 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineering in Automotive Engineering Technology</td><td class="date-cell">February 2022 - February 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Nong Lam University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Nong Lam University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">16 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Nong%20Lam%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Agricultural Product - Food Processing and Preservation Engineering</td><td class="date-cell">January 2020 - January 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Biotechnology</td><td class="date-cell">January 2020 - January 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Agricultural Economics</td><td class="date-cell">January 2020 - January 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Agronomy</td><td class="date-cell">January 2020 - January 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Aquaculture</td><td class="date-cell">August 2022 - August 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Agro-Biochemical Engineering</td><td class="date-cell">August 2022 - August 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Environmental Engineering</td><td class="date-cell">August 2022 - August 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Wood Technology</td><td class="date-cell">August 2022 - August 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Land Management</td><td class="date-cell">July 2023 - June 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of English Language Studies</td><td class="date-cell">July 2023 - June 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Doctor of Veterinary Medicine</td><td class="date-cell">July 2023 - June 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Food Technology (Advanced Programme)</td><td class="date-cell">July 2023 - June 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Biotechnology (BMD)</td><td class="date-cell">July 2024 - July 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Crop Science (CRSC)</td><td class="date-cell">July 2024 - July 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Animal Sciences (EAS)</td><td class="date-cell">July 2024 - July 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Information Technology (IT)</td><td class="date-cell">July 2024 - July 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Quy Nhon University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Quy Nhon University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">2 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Quy%20Nhon%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Business Administration</td><td class="date-cell">November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Economics</td><td class="date-cell">November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Saigon Technology University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Saigon Technology University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">1 Program</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Saigon%20Technology%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Food Technology</td><td class="date-cell">November 2020 - November 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Saigon University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Saigon University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">4 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Saigon%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Mathematics Teacher Education</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Environmental Science</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Engineering in Information Technology</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Chemistry Teacher Education</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tay Nguyen University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Tay Nguyen University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">2 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Tay%20Nguyen%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Economics</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor Degree of English language (English linguistics)</td><td class="date-cell">June 2024 - June 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Thai Nguyen University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Thai Nguyen University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">42 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Thai%20Nguyen%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Mathematics Education,University of Education</td><td class="date-cell">April 2021 - April 2026</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Chemistry Education, University of Education</td><td class="date-cell">April 2021 - April 2026</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Medical Doctor, University of Medicine and Pharmacy</td><td class="date-cell">April 2021 - April 2026</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Nursing, University of Medicine and Pharmacy</td><td class="date-cell">April 2021 - April 2026</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Animal Science and Veterinary Medicine</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Doctor of Veterinary Medicine</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Food Technology</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Animal Science and Veterinary Medicine</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Doctor of Veterinary Medicine</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Food Technology</td><td class="date-cell">October 2021 - October 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Forest Resource Management</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Land Management</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Crop Science</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in International Business</td><td class="date-cell">May 2022 - May 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Business Administration Program</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Software Engineering Undergraduate Program</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Automation Undergraduate Program</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of English Language Teacher Education Program</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Business Administration Program</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Software Engineering Undergraduate Program</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Automation Undergraduate Program</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of English Language Teacher Education Program</td><td class="date-cell">October 2022 - October 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Electronics and Telecommunications Engineering Technology Undergraduate Programme</td><td class="date-cell">July 2023 - July 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Office Administration Undergraduate Programme</td><td class="date-cell">July 2023 - July 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Marketing Management Programme</td><td class="date-cell">July 2023 - July 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Information Technology Undergraduate Programme</td><td class="date-cell">July 2023 - July 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Pharmacy</td><td class="date-cell">December 2023 - December 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Doctor of Preventive Medicine</td><td class="date-cell">December 2023 - December 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer in Mechanical Engineering (Advanced Program)</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer in Electrical Engineering (Advanced Program)</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Business Administration and Finance</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in Accounting and Finance</td><td class="date-cell">May 2024 - May 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Agricultural Economics</td><td class="date-cell">31 November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Environmental Science and Management</td><td class="date-cell">31 November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Surgery Programme</td><td class="date-cell">31 November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Master of Internal Medicine Programme</td><td class="date-cell">31 November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Economic Law</td><td class="date-cell">March 2025 - April 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Tourism and Travel Service Management</td><td class="date-cell">March 2025 - April 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Environmental Science and Management</td><td class="date-cell">November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Agricultural Economics</td><td class="date-cell">November 2024 - November 2029</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Biotechnology</td><td class="date-cell">August 2025 - August 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Engineer of Silviculture</td><td class="date-cell">August 2025 - August 2030</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- The University of Danang -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">The University of Danang</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">43 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=The%20University%20of%20Danang" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program: Electrical and Electronic Engineering</td><td class="date-cell">May 2018 - May 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program: Petroleum Engineering</td><td class="date-cell">May 2018 - May 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program: Information Technology</td><td class="date-cell">May 2018 - May 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program: Electronic and Telecommunication Engineering</td><td class="date-cell">May 2018 - May 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate program in Architecture</td><td class="date-cell">November 2018 - November 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate program in Construction Economics</td><td class="date-cell">November 2018 - November 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate program in Transportation Construction Engineering</td><td class="date-cell">November 2018 - November 2023</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Physics Teacher Education</td><td class="date-cell">December 2019 - December 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Business Administration</td><td class="date-cell">March 2019 - March 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in Accounting</td><td class="date-cell">March 2019 - March 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Programme in International Studies</td><td class="date-cell">March 2019 - March 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Auditing</td><td class="date-cell">November 2019 - November 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Marketing</td><td class="date-cell">November 2019 - November 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of International Business</td><td class="date-cell">November 2019 - November 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in the English Language</td><td class="date-cell">November 2019 - November 2024</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Civil Engineering</td><td class="date-cell">November 2020 - November 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Mechanical Engineering, Major in Automotive Engineering</td><td class="date-cell">November 2020 - November 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Mechatronics Engineering</td><td class="date-cell">November 2020 - November 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Food Technology</td><td class="date-cell">November 2020 - November 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Corporate Finance</td><td class="date-cell">September 2021 - September 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Banking</td><td class="date-cell">September 2021 - September 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Hospitality Management</td><td class="date-cell">September 2021 - September 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of English Language Teaching</td><td class="date-cell">September 2021 - September 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Banking of The University of Danang - University of Economics</td><td class="date-cell">September 2021 - September 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Corporate Finance of The University of Danang - University of Economics</td><td class="date-cell">September 2021 - September 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Hospitality Management of The University of Danang - University of Economics</td><td class="date-cell">September 2021 - September 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Arts in English Language Teaching of The University of Danang - University of Foreign Language Studies</td><td class="date-cell">September 2021 - September 2026</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Advanced Program in Electronics and Communication Engineering (ECE)</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Advanced Program in Embedded Systems and Internet of Things (ES&IoT)</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Industrial Engineering and Management (IEM)</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Control Engineering and Automation (CEA)</td><td class="date-cell">June 2022 - June 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Mathematics Teacher Education, The University of Danang - University of Science and Education</td><td class="date-cell">December 2022 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Philology Teacher Education, The University of Danang - University of Science and Education</td><td class="date-cell">December 2022 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Chemistry Teacher Education, The University of Danang - University of Science and Education</td><td class="date-cell">December 2022 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor in Oriental Studies, The University of Danang - University of Foreign Language Studies</td><td class="date-cell">December 2022 - December 2027</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Thermal Engineering</td><td class="date-cell">July 2023 - July 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Environmental Engineering</td><td class="date-cell">July 2023 - July 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Chemical Engineering</td><td class="date-cell">July 2023 - July 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Undergraduate Program in Biotechnology</td><td class="date-cell">July 2023 - July 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Commerce</td><td class="date-cell">December 2023 - December 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Economics</td><td class="date-cell">December 2023 - December 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Human Resource Management</td><td class="date-cell">December 2023 - December 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Management Information System</td><td class="date-cell">December 2023 - December 2028</td><td class="status-cell"><span class="badge badge-active">Active</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Thu Dau Mot University -->
+        <div class="university-card">
+            <div class="university-header" onclick="toggleDropdown(this)">
+                <div class="title-group">
+                    <span class="toggle-icon">&#9656;</span>
+                    <span class="univ-title">Thu Dau Mot University</span>
+                </div>
+                <div class="actions-group">
+                    <span class="program-count">2 Programs</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Thu%20Dau%20Mot%20University" target="_blank" class="maps-button" onclick="event.stopPropagation();">View on Map</a>
+                </div>
+            </div>
+            <div class="programs-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program / Degree Name</th>
+                            <th>Accreditation Period</th>
+                            <th style="text-align:center;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Software Engineering</td><td class="date-cell">January 2020 - January 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                        <tr class="program-row"><td class="program-cell">Bachelor of Chemistry</td><td class="date-cell">January 2020 - January 2025</td><td class="status-cell"><span class="badge badge-expired">Expired</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
