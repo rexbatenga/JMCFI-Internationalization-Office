@@ -31,6 +31,7 @@
             line-height: 1.6;
             background-color: #fbf9fc;
             position: relative;
+            overflow-x: hidden;
         }
 
         /* Header Layout */
@@ -45,6 +46,7 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
+            position: relative;
         }
 
         /* Cleaned Logo Class - Sitting directly on the background */
@@ -69,60 +71,126 @@
             font-weight: 300;
         }
 
-        /* Floating Side Buttons Container */
-        .side-buttons-container {
+        /* Hamburger Menu Trigger Button */
+        .menu-trigger {
             position: fixed;
-            right: 0;
-            top: 45%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 999;
-        }
-
-        /* Base Floating Button Styling */
-        .btn-side-floating {
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.25);
             color: #ffffff;
-            text-decoration: none;
-            padding: 12px 16px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            border-radius: 8px 0 0 8px;
-            box-shadow: -3px 4px 15px rgba(0, 0, 0, 0.15);
+            font-size: 1.5rem;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
             transition: all 0.2s ease-in-out;
-            width: 175px;
-            justify-content: flex-start;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Specific Colors for Programs Button */
-        .btn-programs {
-            background-color: var(--accent-purple);
-        }
-        .btn-programs:hover {
-            background-color: var(--primary-purple);
-            padding-left: 20px;
+        .menu-trigger:hover {
+            background-color: #ffffff;
+            color: var(--primary-purple);
+            transform: scale(1.05);
         }
 
-        /* Specific Colors for Operational/Tactical Plan Button */
-        .btn-plan {
-            background-color: var(--amber-plan);
-        }
-        .btn-plan:hover {
-            background-color: var(--amber-hover);
-            padding-left: 20px;
+        /* Pop-up Sidebar Panel */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Hidden off-screen initially */
+            width: 300px;
+            height: 100vh;
+            background-color: #ffffff;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            z-index: 1002;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 24px;
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Specific Colors for Monitoring Button */
-        .btn-monitoring {
-            background-color: var(--teal-monitoring);
+        .sidebar-menu.open {
+            right: 0; /* Slides into view */
         }
-        .btn-monitoring:hover {
-            background-color: var(--teal-hover);
-            padding-left: 20px;
+
+        /* Sidebar Close Button */
+        .sidebar-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            margin-bottom: 40px;
+            transition: color 0.2s;
+        }
+
+        .sidebar-close:hover {
+            color: var(--primary-purple);
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            color: var(--primary-purple);
+            font-weight: 700;
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--light-purple);
+            padding-bottom: 10px;
+        }
+
+        /* Sidebar Navigation Item Styling */
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-sidebar-item {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.2s, filter 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .btn-sidebar-item:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        /* Menu Button Theme Variants */
+        .btn-programs { background-color: var(--accent-purple); }
+        .btn-plan { background-color: var(--amber-plan); }
+        .btn-monitoring { background-color: var(--teal-monitoring); }
+
+        /* Dim Backdrop Overlay */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1001;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         /* Main Container */
@@ -217,23 +285,37 @@
 </head>
 <body>
 
-    <!-- Floating Side Buttons Layout Group -->
-    <div class="side-buttons-container">
-        <!-- Button 1: JMCFI Programs Module -->
-        <a href="aun-jmcfi.html" class="btn-side-floating btn-programs">
-            <span>📋 JMCFI Programs</span>
-        </a>
+    <!-- Triple Dash Hamburger Menu Button -->
+    <button class="menu-trigger" id="menuTrigger" title="Open Navigation Menu">
+        &#9776;
+    </button>
 
-        <!-- Button 2: Updated directly to target the local local PDF file -->
-        <a href="Operational Plan_2.pdf" target="_blank" rel="noopener noreferrer" class="btn-side-floating btn-plan">
-            <span>📂 Office Plan</span>
-        </a>
+    <!-- Dark Backdrop Dimmer Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Slide-out Sidebar Panel Container -->
+    <nav class="sidebar-menu" id="sidebarMenu">
+        <button class="sidebar-close" id="menuClose" title="Close Menu">&times;</button>
         
-        <!-- Button 3: Office Monitoring Spreadsheet -->
-        <a href="https://docs.google.com/spreadsheets/d/1n2gk4WteDGtX2whgDvvEG-Hd2XB7BJkp/edit?gid=1746050909#gid=1746050909" target="_blank" rel="noopener noreferrer" class="btn-side-floating btn-monitoring">
-            <span>📊 Office Monitoring</span>
-        </a>
-    </div>
+        <div class="sidebar-title">Office Modules</div>
+        
+        <div class="sidebar-links">
+            <!-- Selection 1: JMCFI Programs Module -->
+            <a href="aun-jmcfi.html" class="btn-sidebar-item btn-programs">
+                <span>📋 JMCFI Programs</span>
+            </a>
+
+            <!-- Selection 2: Direct Local PDF Target Links -->
+            <a href="Operational Plan_2.pdf" target="_blank" rel="noopener noreferrer" class="btn-sidebar-item btn-plan">
+                <span>📂 Office Plan</span>
+            </a>
+            
+            <!-- Selection 3: Office Monitoring Spreadsheet -->
+            <a href="https://docs.google.com/spreadsheets/d/1n2gk4WteDGtX2whgDvvEG-Hd2XB7BJkp/edit?gid=1746050909#gid=1746050909" target="_blank" rel="noopener noreferrer" class="btn-sidebar-item btn-monitoring">
+                <span>📊 Office Monitoring</span>
+            </a>
+        </div>
+    </nav>
 
     <!-- Main Header Area with clean standalone PNG logo -->
     <header>
@@ -286,6 +368,31 @@
     <footer>
         <p>&copy; 2026 JMCFI Internationalization Office. All Rights Reserved.</p>
     </footer>
+
+    <!-- JavaScript Interactions for Sidebar Panel Triggering -->
+    <script>
+        const menuTrigger = document.getElementById('menuTrigger');
+        const menuClose = document.getElementById('menuClose');
+        const sidebarMenu = document.getElementById('sidebarMenu');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        // Function to reveal the side panel menu
+        function openMenu() {
+            sidebarMenu.classList.add('open');
+            sidebarOverlay.classList.add('open');
+        }
+
+        // Function to hide the side panel menu
+        function closeMenu() {
+            sidebarMenu.classList.remove('open');
+            sidebarOverlay.classList.remove('open');
+        }
+
+        // Event Hook Listeners
+        menuTrigger.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        sidebarOverlay.addEventListener('click', closeMenu);
+    </script>
 
 </body>
 </html>
