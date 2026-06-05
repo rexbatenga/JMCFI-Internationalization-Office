@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Internationalization Directory - Vietnam</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --text-color: #333;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .search-box:focus {
+            border-color: var(--primary-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            color: #1a202c;
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            height: 52px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .info-group {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .info-group strong {
+            display: block;
+            color: #4a5568;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .office-tag {
+            display: inline-block;
+            background: #e2e8f0;
+            color: #4a5568;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .info-group p {
+            margin: 0;
+            color: #2d3748;
+        }
+
+        .info-group a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .info-group a:hover {
+            text-decoration: underline;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #718096;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="aun-qa-viet nam.html" class="back-link">&larr; Back to Main Dashboard</a>
+    
+    <header>
+        <h1>Vietnam University Directory</h1>
+        <p>International Cooperation & Internationalization Offices</p>
+        <input type="text" id="searchBar" class="search-box" placeholder="Search by university name...">
+    </header>
+
+    <div class="grid" id="universityGrid">
+        
+        <!-- 1. Can Tho University -->
+        <div class="card">
+            <h2>Can Tho University</h2>
+            <span class="office-tag">International Relations Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ird@ctu.edu.vn">ird@ctu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842923838474">+84 292 383 8474</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Campus II, 3/2 Street, Ninh Kieu District, Can Tho City</p></div>
+        </div>
+
+        <!-- 2. Dalat University -->
+        <div class="card">
+            <h2>Dalat University</h2>
+            <span class="office-tag">Department of Research Affairs & International Relations</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:phongkhhtqt@dlu.edu.vn">phongkhhtqt@dlu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842633825091">+84 263 382 5091</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>01 Phu Dong Thien Vuong, Ward 8, Da Lat City, Lam Dong</p></div>
+        </div>
+
+        <!-- 3. Foreign Trade University -->
+        <div class="card">
+            <h2>Foreign Trade University</h2>
+            <span class="office-tag">International Office (FIO)</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:qhqt@ftu.edu.vn">qhqt@ftu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842432595158">+84 24 3259 5158</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Room A903, Building A, 91 Chua Lang Street, Dong Da, Hanoi</p></div>
+        </div>
+
+        <!-- 4. Hanoi University of Public Health -->
+        <div class="card">
+            <h2>Hanoi University of Public Health</h2>
+            <span class="office-tag">Science, Technology and International Cooperation Dept</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:khhtqt@huph.edu.vn">khhtqt@huph.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842462662299">+84 24 6266 2299</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>1A Duc Thang Road, Duc Thang, Bac Tu Liem, Hanoi</p></div>
+        </div>
+
+        <!-- 5. Hanoi University of Science and Technology -->
+        <div class="card">
+            <h2>Hanoi University of Science and Technology</h2>
+            <span class="office-tag">External Affairs Office (EAO)</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:htqt@hust.edu.vn">htqt@hust.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842438693796">+84 24 3869 3796</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Room C1-212, 1 Dai Co Viet Street, Bach Khoa, Hai Ba Trung, Hanoi</p></div>
+        </div>
+
+        <!-- 6. Ho Chi Minh City Open University -->
+        <div class="card">
+            <h2>Ho Chi Minh City Open University</h2>
+            <span class="office-tag">International Cooperation & Research Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ico@ou.edu.vn">ico@ou.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842839300210">+84 28 3930 0210</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Room 105, 35-37 Ho Hao Hon Street, District 1, HCMC</p></div>
+        </div>
+
+        <!-- 7. Ho Chi Minh City University of Education -->
+        <div class="card">
+            <h2>Ho Chi Minh City University of Education</h2>
+            <span class="office-tag">International Cooperation Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ict@hcmue.edu.vn">ict@hcmue.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838352020">+84 28 3835 2020</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>280 An Duong Vuong Street, Ward 4, District 5, HCMC</p></div>
+        </div>
+
+        <!-- 8. Ho Chi Minh City University of Food Industry -->
+        <div class="card">
+            <h2>Ho Chi Minh City University of Food Industry</h2>
+            <span class="office-tag">Office of International Cooperation & Postgrad Studies</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:htqt@huit.edu.vn">htqt@huit.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838163319">+84 28 3816 3319</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>140 Le Trong Tan Street, Tay Thanh, Tan Phu District, HCMC</p></div>
+        </div>
+
+        <!-- 9. Ho Chi Minh City University of Technology -->
+        <div class="card">
+            <h2>Ho Chi Minh City University of Technology</h2>
+            <span class="office-tag">External Relations Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:inter@hcmut.edu.vn">inter@hcmut.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838651670">+84 28 3865 1670</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Building A1, 268 Ly Thuong Kiet Street, Ward 14, District 10, HCMC</p></div>
+        </div>
+
+        <!-- 10. Ho Chi Minh City University of Technology and Education -->
+        <div class="card">
+            <h2>Ho Chi Minh City University of Technology and Education</h2>
+            <span class="office-tag">International Relations Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:iro@ute.edu.vn">iro@ute.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842837221223">+84 28 3722 1223</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>1 Vo Van Ngan Street, Linh Chieu Ward, Thu Duc City, HCMC</p></div>
+        </div>
+
+        <!-- 11. Ho Chi Minh City University of Transport -->
+        <div class="card">
+            <h2>Ho Chi Minh City University of Transport</h2>
+            <span class="office-tag">International Cooperation & IEC Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:iec@ut.edu.vn">iec@ut.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842835125827">+84 28 3512 5827</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>2 Vo Oanh Street, Ward 25, Binh Thanh District, HCMC</p></div>
+        </div>
+
+        <!-- 12. Ho Chi Minh University of Banking -->
+        <div class="card">
+            <h2>Ho Chi Minh University of Banking</h2>
+            <span class="office-tag">Institute for International Education (IIE)</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:saudaihoc@hub.edu.vn">saudaihoc_htqt@hub.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838212584">+84 28 3821 2584</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>36 Ton That Dam Street, Nguyen Thai Binh Ward, District 1, HCMC</p></div>
+        </div>
+
+        <!-- 13. Hoa Sen University -->
+        <div class="card">
+            <h2>Hoa Sen University</h2>
+            <span class="office-tag">Office of Global Engagement</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:globalengagement@hoasen.edu.vn">globalengagement@hoasen.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842873023456">+84 28 7302 3456</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>8 Nguyen Van Trang Street, Ben Thanh Ward, District 1, HCMC</p></div>
+        </div>
+
+        <!-- 14. Hue University -->
+        <div class="card">
+            <h2>Hue University</h2>
+            <span class="office-tag">Department of International Cooperation</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:dic@hueuni.edu.vn">dic@hueuni.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842343845652">+84 234 384 5652</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>03 Le Loi Street, Hue City, Thua Thien Hue</p></div>
+        </div>
+
+        <!-- 15. Industrial University of Ho Chi Minh City -->
+        <div class="card">
+            <h2>Industrial University of Ho Chi Minh City</h2>
+            <span class="office-tag">Office of International Affairs</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:vphtht@iuh.edu.vn">vphtht@iuh.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842839851917">+84 28 3985 1917</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Building B, 12 Nguyen Van Bao Street, Go Vap District, HCMC</p></div>
+        </div>
+
+        <!-- 16. Lac Hong University -->
+        <div class="card">
+            <h2>Lac Hong University</h2>
+            <span class="office-tag">International Relations Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:qhqt@lhu.edu.vn">qhqt@lhu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842513952311">+84 251 395 2311</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>No 1, Huynh Van Nghe Street, Buu Long Ward, Bien Hoa, Dong Nai</p></div>
+        </div>
+
+        <!-- 17. Nguyen Tat Thanh University -->
+        <div class="card">
+            <h2>Nguyen Tat Thanh University</h2>
+            <span class="office-tag">International Relations Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:qhqt@ntt.edu.vn">qhqt@ntt.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842839404272">+84 28 3940 4272</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>300A Nguyen Tat Thanh Street, Ward 13, District 4, HCMC</p></div>
+        </div>
+
+        <!-- 18. Nong Lam University -->
+        <div class="card">
+            <h2>Nong Lam University</h2>
+            <span class="office-tag">International Cooperation Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:iro@hcmuaf.edu.vn">iro@hcmuaf.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838963351">+84 28 3896 3351</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Linh Trung Ward, Thu Duc City, Ho Chi Minh City</p></div>
+        </div>
+
+        <!-- 19. Quy Nhon University -->
+        <div class="card">
+            <h2>Quy Nhon University</h2>
+            <span class="office-tag">Science-Tech & International Cooperation Dept</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:khcnhtqt@qnu.edu.vn">khcnhtqt@qnu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842563846156">+84 256 384 6156</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>170 An Duong Vuong Street, Quy Nhon City, Binh Dinh</p></div>
+        </div>
+
+        <!-- 20. Saigon Technology University -->
+        <div class="card">
+            <h2>Saigon Technology University</h2>
+            <span class="office-tag">International Cooperation Desk</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:htqt@stu.edu.vn">htqt@stu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838505520">+84 28 3850 5520</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>180 Cao Lu Street, Ward 4, District 8, HCMC</p></div>
+        </div>
+
+        <!-- 21. Saigon University -->
+        <div class="card">
+            <h2>Saigon University</h2>
+            <span class="office-tag">International Cooperation Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:p_htqt@sgu.edu.vn">p_htqt@sgu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838354306">+84 28 3835 4306</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>273 An Duong Vuong Street, Ward 3, District 5, HCMC</p></div>
+        </div>
+
+        <!-- 22. Tay Nguyen University -->
+        <div class="card">
+            <h2>Tay Nguyen University</h2>
+            <span class="office-tag">Science & International Cooperation Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:khhtqt@ttn.edu.vn">khhtqt@ttn.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842623825185">+84 262 382 5185</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>567 Le Duan Street, Ea Tam Ward, Buon Ma Thuot, Dak Lak</p></div>
+        </div>
+
+        <!-- 23. Thai Nguyen University -->
+        <div class="card">
+            <h2>Thai Nguyen University</h2>
+            <span class="office-tag">International Cooperation Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:p.htqt.tnu@moet.edu.vn">p.htqt.tnu@moet.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842083852650">+84 208 385 2650</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Tan Thinh Ward, Thai Nguyen City, Thai Nguyen</p></div>
+        </div>
+
+        <!-- 24. Thu Dau Mot University -->
+        <div class="card">
+            <h2>Thu Dau Mot University</h2>
+            <span class="office-tag">International Affairs Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:htqt@tdmu.edu.vn">htqt@tdmu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842743822518">+84 274 382 2518</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>06 Tran Van On Street, Phu Hoa Ward, Thu Dau Mot, Binh Duong</p></div>
+        </div>
+
+        <!-- 25. The University of Danang -->
+        <div class="card">
+            <h2>The University of Danang</h2>
+            <span class="office-tag">International Cooperation Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:icd@ac.udn.vn">icd@ac.udn.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842363822037">+84 236 382 2037</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>41 Le Duan Street, Hai Chau 1 Ward, Hai Chau District, Da Nang</p></div>
+        </div>
+
+        <!-- 26. Thuongmai University -->
+        <div class="card">
+            <h2>Thuongmai University</h2>
+            <span class="office-tag">International Cooperation Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:htqt@tmu.edu.vn">htqt@tmu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842437643219">+84 24 3764 3219</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>79 Ho Tung Mau Street, Mai Dich, Cau Giay, Hanoi</p></div>
+        </div>
+
+        <!-- 27. Thuyloi University -->
+        <div class="card">
+            <h2>Thuyloi University</h2>
+            <span class="office-tag">International Cooperation Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ico@tlu.edu.vn">ico@tlu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842438533083">+84 24 3853 3083</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>175 Tay Son Street, Trung Liet, Dong Da, Hanoi</p></div>
+        </div>
+
+        <!-- 28. Ton Duc Thang University -->
+        <div class="card">
+            <h2>Ton Duc Thang University</h2>
+            <span class="office-tag">International Cooperation & Study Abroad Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:icas@tdtu.edu.vn">icas@tdtu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842837755105">+84 28 3775 5105</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>19 Nguyen Huu Tho Street, Tan Phong Ward, District 7, HCMC</p></div>
+        </div>
+
+        <!-- 29. Tra Vinh University -->
+        <div class="card">
+            <h2>Tra Vinh University</h2>
+            <span class="office-tag">International Collaboration Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ico@tvu.edu.vn">ico@tvu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842943855246">+84 294 385 5246</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>126 Nguyen Thien Thanh, Ward 5, Tra Vinh City, Tra Vinh</p></div>
+        </div>
+
+        <!-- 30. University of Architecture Ho Chi Minh City -->
+        <div class="card">
+            <h2>University of Architecture Ho Chi Minh City</h2>
+            <span class="office-tag">International Cooperation Unit</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:htqt@uah.edu.vn">htqt@uah.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838222748">+84 28 3822 2748</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>196 Pasteur Street, Vo Thi Sau Ward, District 3, HCMC</p></div>
+        </div>
+
+        <!-- 31. University of Medicine and Pharmacy at Ho Chi Minh City -->
+        <div class="card">
+            <h2>University of Medicine and Pharmacy at Ho Chi Minh City</h2>
+            <span class="office-tag">International Cooperation Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ir@ump.edu.vn">ir@ump.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838558411">+84 28 3855 8411</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>217 Hong Bang Street, Ward 11, District 5, HCMC</p></div>
+        </div>
+
+        <!-- 32. University of Science -->
+        <div class="card">
+            <h2>University of Science (VNU-HCM)</h2>
+            <span class="office-tag">Office of External Relations</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:internationalrelations@hcmus.edu.vn">internationalrelations@hcmus.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838353193">+84 28 3835 3193</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>227 Nguyen Van Cu Street, Ward 4, District 5, HCMC</p></div>
+        </div>
+
+        <!-- 33. University of Transport and Communications -->
+        <div class="card">
+            <h2>University of Transport and Communications</h2>
+            <span class="office-tag">International Cooperation Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:icd@utc.edu.vn">icd@utc.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842437664078">+84 24 3766 4078</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>3 Cau Giay Street, Lang Thuong Ward, Dong Da, Hanoi</p></div>
+        </div>
+
+        <!-- 34. Van Hien University -->
+        <div class="card">
+            <h2>Van Hien University</h2>
+            <span class="office-tag">International Cooperation Division</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:htqt@vhu.edu.vn">htqt@vhu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842873020333">+84 28 7302 0333</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>613 Nguyen Van Linh, Phong Phu Ward, Binh Chanh District, HCMC</p></div>
+        </div>
+
+        <!-- 35. Vietnam Maritime University -->
+        <div class="card">
+            <h2>Vietnam Maritime University</h2>
+            <span class="office-tag">International Cooperation Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ird@vimaru.edu.vn">ird@vimaru.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842253735138">+84 225 373 5138</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>484 Lach Tray Street, Kenh Duong, Le Chan, Hai Phong</p></div>
+        </div>
+
+        <!-- 36. Vietnam National University Ho Chi Minh City -->
+        <div class="card">
+            <h2>Vietnam National University Ho Chi Minh City</h2>
+            <span class="office-tag">International Relations Dashboard Unit</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:iro@vnuhcm.edu.vn">iro@vnuhcm.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842837242181">+84 28 3724 2181</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Linh Trung Ward, Thu Duc City, Ho Chi Minh City</p></div>
+        </div>
+
+        <!-- 37. Vietnam National University of Agriculture -->
+        <div class="card">
+            <h2>Vietnam National University of Agriculture</h2>
+            <span class="office-tag">International Cooperation Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ico@vnua.edu.vn">ico@vnua.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842462617543">+84 24 6261 7543</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Trau Quy Town, Gia Lam District, Hanoi</p></div>
+        </div>
+
+        <!-- 38. Vietnam National University, Hanoi -->
+        <div class="card">
+            <h2>Vietnam National University, Hanoi</h2>
+            <span class="office-tag">International Relations Department</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ird@vnu.edu.vn">ird@vnu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842437547670">+84 24 3754 7670</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>144 Xuan Thuy Street, Dich Vong Hau, Cau Giay, Hanoi</p></div>
+        </div>
+
+        <!-- 39. Vinh University -->
+        <div class="card">
+            <h2>Vinh University</h2>
+            <span class="office-tag">Department of Research & International Affairs</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:htqt@vinhuni.edu.vn">htqt@vinhuni.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842383855452">+84 238 385 5452</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>182 Le Duan Street, Truong Thi Ward, Vinh City, Nghe An</p></div>
+        </div>
+
+        <!-- 40. University of Transport and Communications (Campus II) -->
+        <div class="card">
+            <h2>University of Transport and Communications (Campus II)</h2>
+            <span class="office-tag">External Relations Division</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:htqt.p@utc2.edu.vn">htqt.p@utc2.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838966798">+84 28 3896 6798</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>450 Le Van Viet Street, Tang Nhon Phu A Ward, Thu Duc City, HCMC</p></div>
+        </div>
+
+        <!-- 41. University of Medicine and Pharmacy at HCMC (Alternative) -->
+        <div class="card">
+            <h2>University of Medicine and Pharmacy at HCMC (Global Hub)</h2>
+            <span class="office-tag">International Projects Desk</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:ico@ump.edu.vn">ico@ump.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842838558411">+84 28 3855 8411</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>217 Hong Bang Street, Ward 11, District 5, HCMC</p></div>
+        </div>
+
+        <!-- 42. Lac Hong University (Alternative) -->
+        <div class="card">
+            <h2>Lac Hong University (International Exchange)</h2>
+            <span class="office-tag">Global Engagement Team</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:inter@lhu.edu.vn">inter@lhu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842513952311">+84 251 395 2311</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>No 10, Huynh Van Nghe, Buu Long Ward, Bien Hoa, Dong Nai</p></div>
+        </div>
+
+        <!-- 43. Thai Nguyen University - Lao Cai Campus -->
+        <div class="card">
+            <h2>Thai Nguyen University - Lao Cai Campus</h2>
+            <span class="office-tag">International Liaison Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:phanhieu.laocai@tnu.edu.vn">phanhieu.laocai@tnu.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842143868668">+84 214 386 8668</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>Binh Minh Ward, Lao Cai City, Lao Cai Province</p></div>
+        </div>
+
+        <!-- 44. Thai Nguyen University of Technology -->
+        <div class="card">
+            <h2>Thai Nguyen University of Technology</h2>
+            <span class="office-tag">International Cooperation Office</span>
+            <div class="info-group"><strong>Office Email</strong><p><a href="mailto:office@tnut.edu.vn">office@tnut.edu.vn</a></p></div>
+            <div class="info-group"><strong>Office Phone</strong><p><a href="tel:+842083847145">+84 208 384 7145</a></p></div>
+            <div class="info-group"><strong>Address</strong><p>666 Ba Trieu Street, Quyet Thang Ward, Thai Nguyen City</p></div>
+        </div>
+
+        <div class="no-results" id="noResults">No universities match your search.</div>
+    </div>
+</div>
+
+<script>
+    const searchBar = document.getElementById('searchBar');
+    const cards = document.querySelectorAll('.card');
+    const noResults = document.getElementById('noResults');
+
+    searchBar.addEventListener('keyup', function(e) {
+        const term = e.target.value.toLowerCase().trim();
+        let hasMatches = false;
+
+        cards.forEach(card => {
+            const title = card.querySelector('h2').textContent.toLowerCase();
+            if (title.includes(term)) {
+                card.style.display = 'block';
+                hasMatches = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        noResults.style.display = hasMatches ? 'none' : 'block';
+    });
+</script>
+
+</body>
+</html>
