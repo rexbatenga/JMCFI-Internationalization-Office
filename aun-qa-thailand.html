@@ -5,7 +5,7 @@
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f7fafc; color: #2d3748; margin: 40px; }
         
-        /* Layout container for the header and back button alignment */
+        /* Layout container for the header, back button, and contact button alignment */
         .header-container {
             max-width: 1150px;
             margin: 0 auto 30px auto;
@@ -15,10 +15,10 @@
             position: relative;
         }
 
-        h2 { color: #1a202c; margin: 0; font-weight: 700; letter-spacing: -0.5px; flex-grow: 1; text-align: center; }
+        h2 { color: #1a202c; margin: 0; font-weight: 700; letter-spacing: -0.5px; flex-grow: 1; text-align: center; padding: 0 180px; }
         
-        /* Back to Portal Homepage Button Styling */
-        .home-button {
+        /* Button Base Styling for Header Controls */
+        .header-btn {
             font-size: 13px;
             font-weight: 600;
             color: #ffffff;
@@ -32,10 +32,16 @@
             align-items: center;
             gap: 6px;
             position: absolute;
-            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
         }
-        .home-button:hover { background: #4a5568; transform: translateY(-1px); }
-        .home-button:active { transform: translateY(0); }
+        .header-btn:hover { background: #4a5568; transform: translateY(calc(-50% - 1px)); }
+        .header-btn:active { transform: translateY(-50%); }
+
+        /* Positional hooks for Left and Right buttons */
+        .home-button { left: 0; }
+        .contact-button { right: 0; background: #2563eb; } /* Distinct blue color for the contact action */
+        .contact-button:hover { background: #1d4ed8; }
 
         .dashboard-container { max-width: 1150px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
         
@@ -74,18 +80,24 @@
         .program-row:hover { background-color: #f8fafc; }
 
         /* Responsive design for smaller viewports */
-        @media (max-width: 768px) {
-            .header-container { flex-direction: column; gap: 15px; align-items: flex-start; }
-            .home-button { position: relative; }
+        @media (max-width: 900px) {
+            .header-container { flex-direction: column; gap: 15px; align-items: center; }
+            h2 { padding: 0; text-align: center; order: 1; }
+            .header-btn { position: relative; top: 0; transform: none; min-width: 200px; justify-content: center; }
+            .home-button { order: 2; }
+            .contact-button { order: 3; left: 0; right: 0; }
+            .header-btn:hover { transform: translateY(-1px); }
+            .header-btn:active { transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header structural wrapper for title alignment -->
+    <!-- Header structural wrapper for title and shortcut action navigation buttons -->
     <div class="header-container">
-        <a href="index.html" class="home-button">← Back to Portal Homepage</a>
+        <a href="index.html" class="header-btn home-button">← Back to Portal Homepage</a>
         <h2>AUN-QA Thailand Certification Dashboard</h2>
+        <a href="contact-thailand.html" class="header-btn contact-button">Universities Contact ✉</a>
     </div>
 
     <div class="dashboard-container">
