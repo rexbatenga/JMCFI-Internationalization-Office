@@ -17,12 +17,18 @@
 
         h2 { color: #1a202c; margin: 0; font-weight: 700; letter-spacing: -0.5px; flex-grow: 1; text-align: center; }
         
-        /* Back to Portal Homepage Button Styling */
-        .home-button {
+        /* Navigation Button Container */
+        .nav-group {
+            display: flex;
+            gap: 10px;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Base Button Styling */
+        .btn-nav {
             font-size: 13px;
             font-weight: 600;
-            color: #ffffff;
-            background: #1a202c;
             padding: 10px 18px;
             border-radius: 8px;
             text-decoration: none;
@@ -31,11 +37,16 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            position: absolute;
-            left: 0;
         }
-        .home-button:hover { background: #4a5568; transform: translateY(-1px); }
-        .home-button:active { transform: translateY(0); }
+        .btn-nav:hover { transform: translateY(-1px); }
+        .btn-nav:active { transform: translateY(0); }
+
+        /* Custom Colors for individual buttons */
+        .home-button { background: #1a202c; color: #ffffff; }
+        .home-button:hover { background: #4a5568; }
+
+        .contact-button { background: #2563eb; color: #ffffff; }
+        .contact-button:hover { background: #1d4ed8; }
 
         .dashboard-container { max-width: 1150px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
         
@@ -74,9 +85,9 @@
         .program-row:hover { background-color: #f8fafc; }
 
         /* Responsive design for smaller viewports */
-        @media (max-width: 768px) {
-            .header-container { flex-direction: column; gap: 15px; align-items: flex-start; }
-            .home-button { position: relative; }
+        @media (max-width: 900px) {
+            .header-container { flex-direction: column; gap: 15px; align-items: center; }
+            .nav-group { position: relative; justify-content: center; width: 100%; }
         }
     </style>
     <script>
@@ -89,7 +100,11 @@
 <body>
 
     <div class="header-container">
-        <a href="index.html" class="home-button">← Back to Portal Homepage</a>
+        <!-- Grouped Navigation Buttons -->
+        <div class="nav-group">
+            <a href="index.html" class="btn-nav home-button">← Back to Portal Homepage</a>
+            <a href="contact-vietnam.html" class="btn-nav contact-button">📞</a>
+        </div>
         <h2>AUN-QA Viet Nam Certification Dashboard</h2>
     </div>
 
