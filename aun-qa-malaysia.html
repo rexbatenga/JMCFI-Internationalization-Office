@@ -37,6 +37,25 @@
         .home-button:hover { background: #4a5568; transform: translateY(-1px); }
         .home-button:active { transform: translateY(0); }
 
+        /* Universities Contact Button Styling */
+        .contact-button {
+            font-size: 13px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #1a202c;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: inline-flex;
+            align-items: center;
+            position: absolute;
+            right: 0;
+        }
+        .contact-button:hover { background: #4a5568; transform: translateY(-1px); }
+        .contact-button:active { transform: translateY(0); }
+
         .table-container { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; max-width:1150px; margin:0 auto; }
         table { width: 100%; border-collapse: collapse; }
         th { background-color: #1a202c; color: #fff; padding: 16px; text-align: left; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
@@ -60,6 +79,7 @@
         @media (max-width: 768px) {
             .header-container { flex-direction: column; gap: 15px; align-items: flex-start; }
             .home-button { position: relative; }
+            .contact-button { position: relative; right: auto; }
         }
     </style>
 </head>
@@ -69,6 +89,7 @@
     <div class="header-container">
         <a href="index.html" class="home-button">← Back to Portal Homepage</a>
         <h2>AUN-QA Malaysia Certification Dashboard</h2>
+        <a href="contact-malaysia.html" class="contact-button">Universities Contact</a>
     </div>
 
     <div class="table-container">
